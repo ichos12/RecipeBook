@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RecipeBook.Controllers
 {
-    public class HomeController1 : Controller
+    public class RecipeController : Controller
     {
         public IActionResult Index()
         {
