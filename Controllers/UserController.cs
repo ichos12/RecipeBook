@@ -8,7 +8,7 @@ namespace RecipeBook.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Id()
+        public IActionResult Index()
         {
             return View();
         }
