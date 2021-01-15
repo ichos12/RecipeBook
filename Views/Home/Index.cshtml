@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<RecipeBook.Models.Recipe>
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h3>Выбор пользователей:</h3>
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        <div class="col-md-3">
+            @if (recipe.RecipeImageURL != null)
+            {
+                <img src="@recipe.RecipeImageURL">
+            }
+            else
+            {
+                <img src="https://i.ibb.co/1LFV1xz/image.png" alt="i" border="0">
+            }
+            <br>
+            <p><a href="~/Recipe/Recipe/@recipe.RecipeId">@recipe.Title</a></p>
+            <p>@recipe.Description</p>
+        </div>
+    }
 </div>

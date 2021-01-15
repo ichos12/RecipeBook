@@ -1,0 +1,68 @@
+﻿@model RecipeBook.Models.Recipe
+    <tr>
+        <table>
+            <tr valign="top">
+                <td>
+                    @if (Model.RecipeImageURL != null)
+                    {
+                        <img src="@Model.RecipeImageURL">
+                    }
+                    else
+                    {
+                        <img src="https://i.ibb.co/1LFV1xz/image.png" alt="i" border="0">
+                    }
+                </td>
+                <td>
+                    <h3>
+                        @if (Model.Author != null)
+                        {<a href="~/User/Profile/@Model.Author.UserId">@Model.Author.Username</a>}
+                    </h3>
+                    @if (Model.Type != null)
+                    {<h5>@Model.Type.Title</h5>}
+                    <h1>@Model.Title</h1>
+                    <p>Рейтинг: @Model.RecipeRating</p>
+                    @if (Model.Description != null)
+                    {<p>@Model.Description</p>}
+                </td>
+            </tr>
+        </table>
+    <hr>
+    <tr>
+        <h3>Отзывы</h3>
+        @foreach (var feedback in Model.Feedbacks)
+        {
+            <table>
+                <tr class="row" valign="top">
+                    <td>
+                        Автор: <a href="~/User/Profile/@feedback.User.UserId">@feedback.User.Username</a>
+                        <br> Оценка: @feedback.Rating <br>
+                    </td>
+                </tr>
+                <tr class="row" valign="top">
+                    <td>@feedback.Body</td>
+                </tr>
+                <br>
+            </table>
+        }
+    </tr>
+    <tr>
+        <td>
+            @if (User.Identity.IsAuthenticated) {
+            <form action="" method="post">
+                <div class="form-group">
+                    <textarea rows="5" cols="40"></textarea>
+                </div>
+                <div class="form-group">
+                    <label >Оценка</label>
+                    <input type="text"/>
+                </div>>
+                <div class="control-group">
+                    <div class="controls">
+                        <input class="btn btn-primary" type="submit" value="Отправить">
+                    </div>
+                </div>
+            </form>
+            }
+        </td>
+    </tr>
+    </tr>

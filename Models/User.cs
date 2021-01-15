@@ -14,5 +14,13 @@ namespace RecipeBook.Models
         public string PasswordHash { get; set; }
         public int Type { get; set; }
         public string Country { get; set; }
+
+        public List<Feedback> Feedbacks { get; set; }
+        public User()
+        {
+            Feedbacks = new List<Feedback>();
+            Recipes = new List<Recipe>();
+        }
+        public List<Recipe> Recipes { get; set; }
     }
 }

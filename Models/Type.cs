@@ -9,5 +9,11 @@ namespace RecipeBook.Models
     {
         public int TypeId { get; set; }
         public string Title { get; set; }
+
+        public List<Recipe> Recipes { get; set; }
+        public Type()
+        {
+            Recipes = new List<Recipe>();
+        }
     }
 }

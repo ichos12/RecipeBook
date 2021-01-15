@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RecipeBook.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
 namespace RecipeBook
 {
@@ -27,6 +29,12 @@ namespace RecipeBook
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<RecipeBookContext>(options => options.UseSqlServer(connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Authorization/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Authorization/Login");
+                });
             services.AddControllersWithViews();
         }
 
@@ -48,6 +56,7 @@ namespace RecipeBook
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

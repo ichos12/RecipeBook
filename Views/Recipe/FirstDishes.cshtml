@@ -1,0 +1,13 @@
+﻿@model IEnumerable<RecipeBook.Models.Recipe>
+<h1>Первые блюда:</h1>
+@foreach (var dish in Model)
+{
+    if (dish.RecipeTypeId == 1)
+    {
+        <div>
+            <p>
+                <a href="~/Recipe/Recipe/@dish.RecipeId">@dish.Title</a>
+            </p>
+        </div>
+    }
+}

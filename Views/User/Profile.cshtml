@@ -1,0 +1,37 @@
+﻿@model RecipeBook.Models.User
+<table>
+    <tr valign="top">
+        <td>
+            @if (Model.Type == 0)
+            {<h5 style="color: blue;">Пользователь</h5>}
+            @if (Model.Type == 1)
+            {<h5 style="color: red;">Главный администратор</h5>}
+            <h1>Имя: @Model.Username </h1>
+            @if (Model.Email == User.Identity.Name)
+            {
+                <p><a href="~/User/Edit/@Model.UserId">Редактировать профиль</a></p>
+            }
+        </td>
+    </tr>
+</table>
+<hr>
+<table>
+    <tr>
+        <h4>Отзывы пользователя</h4>
+        @foreach (var feedback in Model.Feedbacks)
+        {
+            <table>
+                <tr class="row" valign="top">
+                    <td>
+                        Рецепт: <a href="~/Recipe/@feedback.RecipeId">@feedback.Recipe.Title</a>
+                        <br> Оценка: @feedback.Rating
+                    </td>
+                </tr>
+                <tr class="row" valign="top">
+                    <td>@feedback.Body</td>
+                </tr>
+                <br>
+            </table>
+        }
+    </tr>
+</table>

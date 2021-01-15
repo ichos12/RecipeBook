@@ -14,7 +14,15 @@ namespace RecipeBook.Models
         public int RecipeRating { get; set; }
         public string RecipeImageURL { get; set; }
 
+        public int RecipeTypeId { get; set; }
+        public Type Type { get; set; }
+
         public int UserId { get; set; }
         public User Author { get; set; }
+        public List<Feedback> Feedbacks { get; set; }
+        public Recipe()
+        {
+            Feedbacks = new List<Feedback>();
+        }
     }
 }
